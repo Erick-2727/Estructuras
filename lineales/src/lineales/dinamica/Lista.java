@@ -145,6 +145,7 @@ public int localizar(Object busc) {
 	/** Quita todos los elementos de la lista. */
 	public void vaciar() {
 		this.cabecera = null;
+                this.longitud=0;
 	}
 
 	/** Verifica que esta vacia */
