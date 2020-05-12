@@ -1,4 +1,4 @@
-package jerarquica.arbolgen;
+package arboles;
 
 /**
  *
