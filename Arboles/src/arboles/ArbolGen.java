@@ -176,28 +176,28 @@ public class ArbolGen {
     }
 
     public Lista ancestros(Object elem) {
-        Lista res = new Lista();
-        this.ancestrosAux(this.raiz, elem, res);
-        return res;
+        Lista list = new Lista();
+        this.ancestrosAux(this.raiz, elem, list);
+        return list;
     }
 
-    private boolean ancestrosAux(NodoGen actual, Object elem, Lista res) {
-        boolean flag = false;
+    private boolean ancestrosAux(NodoGen actual, Object elem, Lista list) {
+        boolean resp = false;
         if (actual != null) {
             if (actual.getElemento().equals(elem)) {
-                flag = true;
+                resp = true;
             } else {
                 NodoGen hijo = actual.getHijoIzquierdo();
-                while (!flag && hijo != null) {
-                    flag = this.ancestrosAux(hijo, elem, res);
+                while (!resp && hijo != null) {
+                    resp = this.ancestrosAux(hijo, elem, list);
                     hijo = hijo.getHermanoDerecho();
                 }
-                if (flag) {
-                    res.insertar(actual.getElemento(), 1);
+                if (resp) {
+                    list.insertar(actual.getElemento(), list.longitud()+1);
                 }
             }
         }
-        return flag;
+        return resp;
     }
 
     public void vaciar() {
@@ -205,6 +205,7 @@ public class ArbolGen {
 
     }
 
+    @Override
     public ArbolGen clone() {
         ArbolGen clon = new ArbolGen();
         if (this.raiz != null) {
@@ -241,17 +242,15 @@ public class ArbolGen {
         if (n != null) {
             list.insertar(n.getElemento(), list.longitud() + 1);
             if (n.getHijoIzquierdo() != null) {
-                inordenAux(n.getHijoIzquierdo(), list);
+                preordenAux(n.getHijoIzquierdo(), list);
             }
-            list.insertar(n.getElemento(), list.longitud() + 1);
             if (n.getHijoIzquierdo() != null) {
                 NodoGen hijo = n.getHijoIzquierdo().getHermanoDerecho();
                 while (hijo != null) {
-                    inordenAux(hijo, list);
+                    preordenAux(hijo, list);
                     hijo = hijo.getHermanoDerecho();
                 }
             }
-
         }
     }
 
@@ -264,13 +263,12 @@ public class ArbolGen {
     private void posordenAux(NodoGen n, Lista list) {
         if (n != null) {
             if (n.getHijoIzquierdo() != null) {
-                inordenAux(n.getHijoIzquierdo(), list);
+                posordenAux(n.getHijoIzquierdo(), list);
             }
-            list.insertar(n.getElemento(), list.longitud() + 1);
             if (n.getHijoIzquierdo() != null) {
                 NodoGen hijo = n.getHijoIzquierdo().getHermanoDerecho();
                 while (hijo != null) {
-                    inordenAux(hijo, list);
+                    posordenAux(hijo, list);
                     hijo = hijo.getHermanoDerecho();
                 }
             }
