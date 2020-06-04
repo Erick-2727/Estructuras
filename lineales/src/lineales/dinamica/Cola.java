@@ -10,11 +10,11 @@ package lineales.dinamica;
  * @author Erick
  */
 
-public class ColaDinamica {
+public class Cola{
 
     private Nodo fin, frente;
 
-    public ColaDinamica() {
+    public Cola() {
         fin = null;
         frente = null;
     }
@@ -52,16 +52,18 @@ public class ColaDinamica {
         return this.frente == null;
     }
 
-    public ColaDinamica clone() {
-        ColaDinamica clon = new ColaDinamica();
+    public Cola clone() {
+        Cola clon = new Cola();
         this.clonarRecursivoPaso(clon, this.frente);
         return clon;
     }
 
-    private void clonarRecursivoPaso(ColaDinamica colaClon, Nodo actual) {
+    private void clonarRecursivoPaso(Cola colaClon, Nodo actual) {
 
         if (actual != null) {
-            colaClon.poner(actual.getElemento());
+            Nodo nuevo = new Nodo(actual.getElemento(), null);
+            colaClon.fin.setEnlace(nuevo);
+            this.fin = nuevo;
             clonarRecursivoPaso(colaClon, actual.getEnlace());
 
         }

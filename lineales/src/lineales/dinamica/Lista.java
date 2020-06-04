@@ -28,7 +28,7 @@ public class Lista {
 	 * Devuelve verdadero si se puede insertar correctamente y falso en caso
 	 * contrario.
 	 */
-	public boolean insertar(Object elem, int pos) {
+	public boolean insertar(Object elem, int pos){
 
         boolean exito = false;
         Nodo nuevo = new Nodo(elem, null);
@@ -193,5 +193,28 @@ public int localizar(Object busc) {
             contenido = actual.getElemento() + " " + toStringRecursivoPaso(actual.getEnlace());
         }
         return contenido;
+    }
+    public boolean esCapicua() {
+        boolean capicua = true, impar = (this.longitud % 2) == 1;
+        Pila aux = new Pila();
+        int mitad = this.longitud / 2, i = 1;
+        Nodo actual = this.cabecera;
+        while (i <= this.longitud && capicua) {
+            if (i <= mitad) {
+                aux.apilar(actual.getElemento());
+                actual = actual.getEnlace();
+            }
+            if (i == mitad + 1 && impar) {
+                actual = actual.getEnlace();
+                i = i + 1;
+            }
+            if (i > mitad && capicua) {
+                capicua = actual.getElemento().equals(aux.obtenerTope());
+                aux.desapilar();
+                actual = actual.getEnlace();
+            }
+            i = i + 1;
+        }
+        return capicua;
     }
 }

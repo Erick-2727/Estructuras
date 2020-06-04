@@ -2,10 +2,10 @@ package lineales.dinamica;
 
 //@author Erick
 
-public class PilaDinamica {
+public class Pila {
     private Nodo tope;
     
-    public PilaDinamica(){
+    public Pila(){
         this.tope = null;
     }
     
@@ -67,13 +67,13 @@ public class PilaDinamica {
       return contenido;  
     }
     @Override
-    public PilaDinamica clone(){
-        PilaDinamica clon = new PilaDinamica();
+    public Pila clone(){
+        Pila clon = new Pila();
         this.clonarRecursivoPaso(clon,this.tope);
         return clon;
     }
     
-    private void clonarRecursivoPaso(PilaDinamica pilaClon, Nodo actual){
+    private void clonarRecursivoPaso(Pila pilaClon, Nodo actual){
         
         if(actual != null){
             clonarRecursivoPaso(pilaClon,actual.getEnlace());
