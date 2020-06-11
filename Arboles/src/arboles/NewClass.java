@@ -18,8 +18,10 @@ public class NewClass {
   a.insertar(7, 3,'I');
   a.insertar(9, 4,'I');
   a.insertar(2, 9,'I');
+  a.insertar(15, 4,'D');
+  a.insertar(17, 15,'D');
   
-      System.out.println(a.ancestros(2));
+      System.out.println(a.ancestros(17));
   
   
   
