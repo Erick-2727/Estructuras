@@ -96,6 +96,39 @@ public class ArbolBin {
         }
         return altura;
     }
+     public Lista ancestros(Object elem) {
+        Lista list = new Lista();
+        this.ancestrosAux(this.raiz, elem, list);
+        return list;
+    }
+
+    private boolean ancestrosAux(NodoArbol actual, Object elem, Lista list) {
+        boolean resp = false;
+        if (actual != null) {
+            //si el objeto es el buscado retorna
+            if (actual.getElemento().equals(elem)) {
+                resp = true;
+            } else {
+                //si el objeto aun no se encuentra llama al metodo con el hijo izquierdo
+                resp = this.ancestrosAux(actual.getIzquierdo(), elem, list);
+                //si resp es true significa que el objeto fue entontrado 
+                //y que el nodo actual es ancestro de el, y entonces lo inserta en la lista
+                if (resp) {
+                    list.insertar(actual.getElemento(), list.longitud() + 1);
+                } else {
+                    //si no se encontra yendo por la rama izquierda lo intenta por la derecha
+                    resp = this.ancestrosAux(actual.getDerecho(), elem, list);
+                    //si resp es true significa que el objeto fue entontrado 
+                    //y que el nodo actual es ancestro de el, y entonces lo inserta en la lista
+                    if (resp) {
+                        list.insertar(actual.getElemento(), list.longitud() + 1);
+                    }
+                }
+            }
+        }
+
+        return resp;
+    }
 
     private int alturaAux(NodoArbol aux) {
         int altD = 0, altIzq = 0, altMayor = 0;
