@@ -26,7 +26,7 @@ public class NewClass1 {
         a.insertar('*',9);
         a.insertar('i',10);
         
-        b = generarLista(a);
+        b = generarLista2(a);
         System.out.println(b.toString());
 
     }
@@ -83,7 +83,7 @@ public class NewClass1 {
             //elimino el primer elemento de la lista
             li.eliminar(1);
             //pregunto si el primer elemento de la lista es '*'
-            if ( li.recuperar(1) != null) {
+            if ( !li.esVacia()) {
                 if (( li.recuperar(1)).equals('*')) {
                     x = r + 1;
                     li.eliminar(1);
@@ -132,7 +132,7 @@ public class NewClass1 {
             //elimino el primer elemento de la lista
             li.eliminar(1);
             //pregunto si el primer elemento de la lista es '*'
-            if ( li.recuperar(1) != null) {
+            if (!li.esVacia()) {
                 if (( li.recuperar(1)).equals('*')) {
                     li.eliminar(1);
                     while (!pila.esVacia()) {
