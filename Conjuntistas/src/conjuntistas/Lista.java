@@ -189,7 +189,7 @@ public class Lista {
         if (!this.esVacia()) {
             contenido = "";
             //recorremos los enlaces de forma recursiva
-            contenido = "[" + toStringRecursivoPaso(this.cabecera) + "]";
+            contenido = "[" + toStringRecursivoPaso(this.cabecera) +"]";
         }
         return contenido;
     }
@@ -197,7 +197,7 @@ public class Lista {
     private String toStringRecursivoPaso(Nodo actual) {
         String contenido = "";
         if (actual != null) {
-            contenido = actual.getElemento() + " " + toStringRecursivoPaso(actual.getEnlace());
+            contenido = actual.getElemento() + "," + toStringRecursivoPaso(actual.getEnlace());
         }
         return contenido;
     }

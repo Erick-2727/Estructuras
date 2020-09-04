@@ -1,14 +1,14 @@
 
 package lineales.estatica;
 // @author franco
-public class PilaEstatica {
+public class Pila {
     private int TAMANIO=10;
-    private Object[] array;
+    private Object array[];
     private int tope;
     
     //constructor
 
-    public PilaEstatica() {
+    public Pila() {
         //generamos el tamaño de la pila
         this.array = new Object[TAMANIO];
         this.tope = -1;
@@ -70,14 +70,10 @@ public class PilaEstatica {
     
     //clone 
     @Override
-    public PilaEstatica clone(){
-        PilaEstatica clon = new PilaEstatica();
-        int i = 0;
-        
-        while(i <= this.tope){
-            clon.apilar(this.array[i]);
-            i++;
-        }
+    public Pila clone(){
+        Pila clon = new Pila();
+        clon.array = this.array.clone();
+        clon.tope = this.tope;
         return clon;
     }
     //to string

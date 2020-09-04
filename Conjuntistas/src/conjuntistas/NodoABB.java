@@ -12,6 +12,9 @@ public class NodoABB {
     private NodoABB izquierdo;
 
     //constructor
+    public NodoABB(Comparable elemento) {
+        this.elemeto = elemento;
+    }
     public NodoABB(Comparable elemento, NodoABB derecho, NodoABB izquierdo) {
         this.elemeto = elemento;
         this.derecho = derecho;

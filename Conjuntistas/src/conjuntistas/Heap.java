@@ -34,7 +34,7 @@ public class Heap {
         return resultado;
     }
 
-    public void subir() {
+    private void subir() {
         Comparable temp;
         boolean res = true;
         int aux = ultimo;
@@ -67,7 +67,7 @@ public class Heap {
         return exito;
     }
 
-    public void hacerBajar() {
+    private void hacerBajar() {
         Comparable temp;
         boolean res = true;
         int posP = 1, posH;

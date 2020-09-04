@@ -414,6 +414,25 @@ public class ArbolBB {
             ListarAux(raiz.getDerecho(), list);
         }
     }
+    public Lista listarPorNivel(int nivel){
+        Lista res=new Lista();
+        if (!this.esVacio()) {
+            listarPorNivelAux(this.raiz, res,0,nivel);
+        }
+    return res;
+    }
+    private void listarPorNivelAux(NodoABB node, Lista list, int nivActual, int nivel) {
+        if (nivel == nivActual) {
+            if (node != null) {
+                list.insertar(node.getElemento(), 1);
+            }
+        } else {
+            if (node != null) {
+                listarPorNivelAux(node.getIzquierdo(), list, nivActual + 1, nivel);
+                listarPorNivelAux(node.getDerecho(), list, nivActual + 1, nivel);
+            }
+        }
+    }
 //Lista todos los elementos que se encuentran en un rango determinado.
 
     public Lista listarRango(Comparable min, Comparable max) {
@@ -457,6 +476,78 @@ public class ArbolBB {
             s = toStringAux(nodo.getDerecho(), s);
         }
         return s;
+    }
+    //Metodo del parcial
+    public int amplitudArbol(Comparable elem) {
+        int pertenece = -1;
+
+        if (this.raiz != null) {
+            pertenece = amplitudArbolAux(this.raiz, elem);
+        }
+        return pertenece;
+    }
+
+    private int amplitudArbolAux(NodoABB n, Comparable elemBusc) {
+        int min = 0, may = 0, resultado = -1, valorNodo = (int) n.getElemento();
+        NodoABB hI = n.getIzquierdo(), hD = n.getDerecho();
+        //compara elemNuevo con el elemento del nodo actual,si es igual retorna true. 
+        if (n.getElemento().equals(elemBusc)) {
+            if (hI == null && hD == null) {
+                resultado = 0;
+            } else {
+                if (hI != null) {
+                    min = obtenerMin(hI);
+                }
+                if (hD != null) {
+                    may = obtenerMay(hD);
+                }
+                if (hD != null && hI != null) {
+                    System.out.println(may+" - "+ min);
+                    resultado = may - min;
+                } else {
+                    if (hI == null) {
+                        resultado = valorNodo - may;
+                    } else {
+                        resultado = valorNodo - min;
+                    }
+                }
+            }
+        } else {
+            if (n.getElemento().compareTo(elemBusc) > 0) {
+                //si es menor y tiene hijo izquierdo null, retorna false ya quese llego a una hoja y no se encontro.
+                if (hI != null) {
+                    //si el hijo izquierdo es diferente de null, llama al metodo con el hijo izquierdo.
+                    resultado = amplitudArbolAux(hI, elemBusc);
+                }
+            } else {
+                //si es mayor y tiene hijo derecho null, retorna false ya quese llego a una hoja y no se encontro.
+                if (hD != null) {
+                    //si el hijo derecho es diferente de null, llama al metodo con el hijo derecho.
+                    resultado = amplitudArbolAux(hD, elemBusc);
+                }
+            }
+        }
+        return resultado;
+    }
+
+    private int obtenerMay(NodoABB hijo) {
+        int resultado;
+        if (hijo.getDerecho() == null) {
+            resultado = (int) hijo.getElemento();
+        } else {
+            resultado = obtenerMay(hijo.getDerecho());
+        }
+        return resultado;
+    }
+
+    private int obtenerMin(NodoABB hijo) {
+        int resultado;
+        if (hijo.getIzquierdo() == null) {
+            resultado = (int) hijo.getElemento();
+        } else {
+            resultado = obtenerMin(hijo.getIzquierdo());
+        }
+        return resultado;
     }
 
 }

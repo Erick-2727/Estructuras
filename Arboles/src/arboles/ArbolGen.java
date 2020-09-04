@@ -253,6 +253,25 @@ public class ArbolGen {
             }
         }
     }
+    public Lista frontera() {
+        Lista frontera = new Lista();
+        fronteraAux(this.raiz, frontera);
+        return frontera;
+    }
+
+    private void fronteraAux(NodoGen n, Lista list) {
+        NodoGen hijo;
+        hijo=n.getHijoIzquierdo();
+        int l= list.longitud();
+        if (hijo==null) {
+            list.insertar(n.getElemento(),l+1);
+        }
+        while(hijo!=null){
+            fronteraAux(hijo, list);
+            hijo=hijo.getHermanoDerecho();
+        }
+        
+    }
 
     public Lista listarPosorden() {
         Lista posorden = new Lista();
@@ -297,6 +316,29 @@ public class ArbolGen {
             }
         }
     }
+   public Lista listarNiveles() {
+        Lista lista = new Lista();
+        if (this.raiz != null) {
+            Cola cola = new Cola();
+            NodoGen nodo, hijo;
+            cola.poner(this.raiz);
+            int x=1;
+            while (!cola.esVacia()) {
+                nodo = (NodoGen) cola.obtenerFrente();
+                lista.insertar(nodo.getElemento(),x);
+                x=x+1;
+                cola.sacar();
+                hijo = nodo.getHijoIzquierdo(); 
+                while (hijo != null) {
+                    cola.poner(hijo);
+                    hijo = hijo.getHermanoDerecho();
+                }
+            }
+        }
+        return lista;
+    }
+    
+    
 
     @Override
     public String toString() {

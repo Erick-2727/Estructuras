@@ -255,7 +255,33 @@ public class ArbolBin {
             inordenAux(raiz.getDerecho(), inorden);
         }
     }
+    public Lista listarNiveles() {
+        Lista lista = new Lista();
+        if (this.raiz != null) {
+            Cola cola = new Cola();
+            NodoArbol nodo, hI, hD;
+            cola.poner(this.raiz);
+            int x = 1;
+            while (!cola.esVacia()) {
+                nodo = (NodoArbol) cola.obtenerFrente();
+                lista.insertar(nodo.getElemento(), x);
+                x = x + 1;
+                cola.sacar();
+                hI = nodo.getIzquierdo();
+                hD = nodo.getDerecho();
+                if (hI != null) {
+                    cola.poner(hI);
+                }
+                if (hD != null) {
+                    cola.poner(hD);
+                }
 
+            }
+        }
+        return lista;
+    }
+        
+    
     @Override
     public String toString() {
         return (this.raiz != null)

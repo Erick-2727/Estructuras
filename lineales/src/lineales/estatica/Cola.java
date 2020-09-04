@@ -9,13 +9,13 @@ package lineales.estatica;
  *
  * @author Erick
  */
-public class ColaEstatica {
+public class Cola {
 
     private static final int tamanio = 10;
     private Object array[];
     private int fin, frente;
 
-    public ColaEstatica() {
+    public Cola() {
         this.array = new Object[tamanio];
         fin = 0;
         frente = 0;
@@ -45,16 +45,12 @@ public class ColaEstatica {
         return this.fin == this.frente;
     }
 
-    public ColaEstatica clone() {
-        ColaEstatica aux = new ColaEstatica();
-        int der = this.frente;
-        while (this.fin != der) {
-            aux.array[der] = this.array[der];
-            der = (der + 1) % tamanio;
-        }
-        aux.fin = this.fin;
-        aux.frente = this.frente;
-        return aux;
+    public Cola clone() {
+        Cola clon = new Cola();
+        clon.array = this.array.clone();
+        clon.fin = this.fin;
+        clon.frente = this.frente;
+        return clon;
     }
 
     public String toString() {

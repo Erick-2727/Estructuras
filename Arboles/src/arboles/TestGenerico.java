@@ -41,6 +41,7 @@ public class TestGenerico {
         
         ArbolGen a = new ArbolGen();
         ArbolGen b = new ArbolGen();
+        ArbolGen c = new ArbolGen();
         
         System.out.println(ANSI_YELLOW_BACKGROUND+"--------------------------------------------------------------------------------------------------------"
                 + "------------------------------------------------------------------------------------------"+RESET);
@@ -169,6 +170,44 @@ public class TestGenerico {
         System.out.println("Recorrido en posOrden.\n Tiene que dar: [ 7 - 10 - 3 - 9 - 12 - 20 - 22 - 40 - 45 - 55 - 30 - 15 - 10]  " + a.listarPosorden().toString());
         System.out.println("\n");
         System.out.println("Recorrido en InOrden.\n Tiene que dar: [ 7 - 9 - 10 - 3 - 10 - 12 - 15 - 20 - 22 - 40 - 30 - 45 - 55]  " + a.listarInorden().toString());
+        System.out.println("\n\n");
+        System.out.println(ANSI_YELLOW_BACKGROUND+"----------------------------------------------------------------------------------------------------------"
+                + "----------------------------------------------------------------------------------------"+RESET);
+        System.out.println("\n\n**********************************");
+        System.out.println("*      Test de Frontera        *");
+        System.out.println("**********************************\n");
+        System.out.println("Creo un arbol");
+        System.out.println("Inserto el 10 en raiz " + ((  c.insertar(10, 1)) ? sOk : sErr));
+	System.out.println("Inserto el 9 como hijo de 10 " + ((  c.insertar(9, 10)) ? sOk : sErr));
+	System.out.println("Inserto el 7 como hijo de 9 " + ((  c.insertar(7, 9)) ? sOk : sErr));
+        System.out.println("Inserto el 3 como hijo de 9 " + ((  c.insertar(3, 9)) ? sOk : sErr));
+        System.out.println("Inserto el 15 como hijo de 10 " + ((  c.insertar(15, 10)) ? sOk : sErr));
+        System.out.println("Inserto el 12 como hijo de 15 " + ((  c.insertar(12, 15)) ? sOk : sErr));
+        System.out.println("Inserto el 20 como hijo de 15 " + ((  c.insertar(20, 15)) ? sOk : sErr));
+        System.out.println("Inserto el 22 como hijo de 15 " + ((  c.insertar(22, 15)) ? sOk : sErr));
+        System.out.println("Inserto el 30 como hijo de 15 " + ((  c.insertar(30, 15)) ? sOk : sErr));
+        System.out.println("Inserto el 40 como hijo de 30 " + ((  c.insertar(40, 30)) ? sOk : sErr));
+        System.out.println("Inserto el 45 como hijo de 30 " + ((  c.insertar(45, 30)) ? sOk : sErr));
+        System.out.println("Inserto el 55 como hijo de 30 " + ((  c.insertar(55, 30)) ? sOk : sErr));
+        System.out.println("Siendo el Arbol");
+        System.out.println(c.toString());
+        System.out.println("El metodo frontera.\n Tiene que dar: [ 7 3 12 20 22 40 45 55 ] ---> " + c.frontera().toString());
+        System.out.println("");
+        System.out.println("Inserto nuevamente para cambiar la forma del arbol");
+        System.out.println("Inserto el 6 como hijo de 12 " + ((  c.insertar(6, 12)) ? sOk : sErr));
+        System.out.println("Inserto el 18 como hijo de 40 " + ((  c.insertar(18, 40)) ? sOk : sErr));
+        System.out.println("Inserto el 1 como hijo de 40 " + ((  c.insertar(1, 40)) ? sOk : sErr));
+        System.out.println("12 y 40 dejan de ser hojas, y ahora 6,18 y 1 son hojas");
+        System.out.println("Siendo el Arbol");
+        System.out.println(c.toString());
+        System.out.println("El metodo frontera.\n Tiene que dar: [ 7 3 6 20 22 18 1 45 55 ] ---> " + c.frontera().toString());
+        System.out.println("Vacio el arbol");
+        c.vaciar();
+        System.out.println(c.toString());
+        System.out.println("Inserto el 5 en raiz " + ((  c.insertar(5, 1)) ? sOk : sErr));
+        System.out.println(c.toString());
+        System.out.println("El metodo frontera de arbol con 1 solo elemento.\n Tiene que dar: [ 5 ] ---> " + c.frontera().toString());
+        
         
     }
     
