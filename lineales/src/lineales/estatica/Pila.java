@@ -1,6 +1,6 @@
 
 package lineales.estatica;
-// @author franco
+// @author Erick
 public class Pila {
     private int TAMANIO=10;
     private Object array[];
