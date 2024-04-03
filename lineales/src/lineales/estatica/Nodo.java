@@ -1,9 +1,9 @@
 package lineales.estatica;
 
-//@author franco
+//@author Erick
 
 import lineales.dinamica.*;
-//@author franco
+//@author Erick
 public class Nodo {
     private Object elemeto;
     private Nodo enlace;
